@@ -50,16 +50,17 @@ const start = async () => {
   }
 
   if (localStorage.getItem("githubAccessToken")) {
-    // const user = axios.get("https://api.github.com/user", {
-    //   Accept: "application/vnd.github+json",
-    //   Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
-    //   "X-GitHub-Api-Version": "2022-11-28",
-    // });
+
+    const user = axios.get("https://api.github.com/user", {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+    });
 
     document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
-        <p>Hi!</p>
+        <p>Hi ${user.name}!</p>
         <div class="read-the-docs">
           <div>
             <div>
