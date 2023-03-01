@@ -5,6 +5,8 @@ exports.handler = async function (event, context) {
   const client_id = process.env.CLIENT_ID;
   const client_secret = process.env.CLIENT_SECRET;
 
+  console.log(`Received request with code: ${code}`);
+
   if (code) {
     const response = await axios.post(
       `https://github.com/login/oauth/access_token`,
