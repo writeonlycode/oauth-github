@@ -60,7 +60,7 @@ const start = async () => {
     document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
-        <p>Hi ${user.name}!</p>
+        <p>Hi ${user}!</p>
         <div">
           <div>
             <div>
