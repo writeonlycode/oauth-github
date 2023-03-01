@@ -75,7 +75,7 @@ const start = async () => {
           <div>
             <div>
               <h2>Repositories:</h2>
-              ${ repos.data.map((e) => `<p>${e.name}</p>`) }
+              ${ repos.data.map((e) => `<p>${e.name}</p>`).join(" ") }
             </div>
           </div>
         </div>
