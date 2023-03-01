@@ -57,19 +57,25 @@ const start = async () => {
       },
     });
 
+    const repos = await axios.get("https://api.github.com/user/repos", {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
+      },
+    });
+
     console.log(user);
+    console.log(repos);
 
     document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
         <p>Hi ${user.data.name}!</p>
-        <div">
+        <div>
           <div>
             <div>
               <h2>Repositories:</h2>
-              <ul>
-                <li>Repository #1</li>
-              </ul>
+              ${ repos.data.map((e) => `<p>${e.name}</p>`) }
             </div>
           </div>
         </div>
