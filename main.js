@@ -46,7 +46,7 @@ const start = async () => {
       return;
     }
 
-    localStorage.setItem("github_access_token", githubAccessToken);
+    localStorage.setItem("githubAccessToken", githubAccessToken);
   }
 
   if (localStorage.getItem("githubAccessToken")) {
