@@ -7,11 +7,14 @@ const start = async () => {
   const code = searchParams.get("code");
 
   if (code) {
-    const response = await axios.get("https://gleeful-sundae-16db0f.netlify.app/.netlify/functions/github_access_token/", null, {
-      params: {
-        code,
-      },
-    });
+    const response = await axios.get(
+      "https://gleeful-sundae-16db0f.netlify.app/.netlify/functions/github_access_token",
+      {
+        params: {
+          code,
+        },
+      }
+    );
 
     console.log(response);
 
@@ -20,6 +23,9 @@ const start = async () => {
         <h1>Hello Vite!</h1>
         <p class="read-the-docs">
           Click on the Vite logo to learn more
+          <div>
+            Code: ${code}
+          </div>
           <pre>
             ${JSON.stringify(response)}
           </pre>
@@ -27,7 +33,6 @@ const start = async () => {
         </p>
       </div>
     `;
-
   } else {
     document.querySelector("#app").innerHTML = `
       <div>
