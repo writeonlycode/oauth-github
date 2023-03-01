@@ -18,16 +18,19 @@ exports.handler = async function (event, context) {
       }
     );
 
-    console.log(response)
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ text: "Hello!" }),
+      body: JSON.stringify(response.data),
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ event, context }),
+    body: JSON.stringify({
+      error: "bad_verification_code",
+      error_description: "The code passed is incorrect or expired.",
+      error_uri:
+        "/apps/managing-oauth-apps/troubleshooting-oauth-app-access-token-request-errors/#bad-verification-code",
+    }),
   };
 };
