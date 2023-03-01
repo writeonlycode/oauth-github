@@ -5,6 +5,7 @@ import axios from "axios";
 const start = async () => {
   const searchParams = new URLSearchParams(window.location.search);
   const code = searchParams.get("code");
+  let access_token;
 
   if (code) {
     const response = await axios.get(
@@ -16,7 +17,7 @@ const start = async () => {
       }
     );
 
-    console.log(response);
+    access_token = response.data.access_token;
 
     document.querySelector("#app").innerHTML = `
       <div>
@@ -25,6 +26,7 @@ const start = async () => {
           Click on the Vite logo to learn more
           <div>
             Code: ${code}
+            Access Token: ${access_token}
           </div>
           <pre>
             ${JSON.stringify(response)}
