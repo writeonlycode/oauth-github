@@ -11,6 +11,7 @@ const start = async () => {
     const response = await axios.get(
       "https://gleeful-sundae-16db0f.netlify.app/.netlify/functions/github_access_token",
       {
+        responseType: "text/json",
         params: {
           code,
         },
