@@ -12,6 +12,8 @@ exports.handler = async function (event, context) {
       `https://github.com/login/oauth/access_token`,
       null,
       {
+        headers: {'Accept': 'application/json'},
+        responseType: "json",
         params: {
           code,
           client_id,
