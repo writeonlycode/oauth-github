@@ -50,7 +50,7 @@ const start = async () => {
   }
 
   if (localStorage.getItem("githubAccessToken")) {
-    const user = axios.get("https://api.github.com/user", {
+    const user = await axios.get("https://api.github.com/user", {
       headers: {
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
