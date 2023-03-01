@@ -57,10 +57,12 @@ const start = async () => {
       },
     });
 
+    console.log(user);
+
     document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
-        <p>Hi ${user}!</p>
+        <p>Hi ${user.data.name}!</p>
         <div">
           <div>
             <div>
