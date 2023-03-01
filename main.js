@@ -54,7 +54,6 @@ const start = async () => {
       headers: {
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
-        "X-GitHub-Api-Version": "2022-11-28",
       },
     });
 
