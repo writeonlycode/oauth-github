@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function loginPage() {
   document.querySelector("#app").innerHTML = `
       <div>
