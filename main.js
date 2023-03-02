@@ -2,6 +2,10 @@ import "./style.css";
 import axios from "axios";
 import {errorPage, loggedPage, loginPage} from "./html";
 
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("githubAccessToken");
+});
+
 const start = async () => {
   const searchParams = new URLSearchParams(window.location.search);
   const code = searchParams.get("code");

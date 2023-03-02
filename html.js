@@ -5,7 +5,7 @@ export function loginPage() {
       <div>
         <h1>OAuth with GitHub</h1>
         <div>
-          <a class="button" href="https://github.com/login/oauth/authorize?client_id=9b5cefd5346e0dc66d46&scope=read:repo_hook">Log In with GitHub</a>
+          <a class="button" href="https://github.com/login/oauth/authorize?client_id=9b5cefd5346e0dc66d46&scope=repo">Log In with GitHub</a>
         </div>
       </div>
     `;
