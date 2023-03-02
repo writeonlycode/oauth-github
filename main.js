@@ -10,7 +10,7 @@ const start = async () => {
       <div>
         <h1>OAuth with GitHub</h1>
         <div class="read-the-docs">
-          <a class="button" href="https://github.com/login/oauth/authorize?client_id=9b5cefd5346e0dc66d46">Log In with GitHub</a>
+          <a class="button" href="https://github.com/login/oauth/authorize?client_id=9b5cefd5346e0dc66d46&scope=read:repo_hook">Log In with GitHub</a>
         </div>
       </div>
     `;
