@@ -24,21 +24,26 @@ export function errorPage() {
 }
 
 export async function loggedPage() {
-    const user = await axios.get("https://api.github.com/user", {
+  const user = await axios.get("https://api.github.com/user", {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
+    },
+  });
+
+  console.log(user);
+
+  const repos = await axios.get(
+    `https://api.github.com/search/repositories?q=user:${user.data.user}`,
+    {
       headers: {
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
       },
-    });
+    }
+  );
 
-    const repos = await axios.get(`https://api.github.com/search/repositories?q=user:${user.data.user}`, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
-      },
-    });
-
-    document.querySelector("#app").innerHTML = `
+  document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
         <p>Hi ${user.data.user}!</p>
@@ -46,7 +51,7 @@ export async function loggedPage() {
           <div>
             <div>
               <h2>Repositories:</h2>
-              ${ repos.data.map((e) => `<p>${e.name}</p>`).join(" ") }
+              ${repos.data.map((e) => `<p>${e.name}</p>`).join(" ")}
             </div>
           </div>
         </div>
