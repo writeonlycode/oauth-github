@@ -24,36 +24,36 @@ export function errorPage() {
 }
 
 export async function loggedPage() {
-  const user = await axios.get("https://api.github.com/user", {
-    headers: {
-      Accept: "application/vnd.github+json",
-      Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
-    },
-  });
-
-  console.log(user);
-
-  const repos = await axios.get(
-    `https://api.github.com/search/repositories?q=user:${user.data.login}`,
-    {
+  try {
+    const user = await axios.get("https://api.github.com/user", {
       headers: {
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
       },
-    }
-  );
+    });
 
-  console.log(repos);
+    const repos = await axios.get(
+      `https://api.github.com/search/repositories?q=user:${user.data.login}`,
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${localStorage.getItem("githubAccessToken")}`,
+        },
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
 
   document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
-        <p>Hi ${user.data.name || user.data.login}!</p>
+        <p>Hi ${user?.data?.name || user?.data?.login}!</p>
         <div>
           <div>
             <div>
               <h2>Repositories:</h2>
-              ${repos.data.items.map((e) => `<p>${e.name}</p>`).join(" ")}
+              ${repos?.data?.items?.map((e) => `<p>${e.name}</p>`).join(" ")}
             </div>
           </div>
         </div>
