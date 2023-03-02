@@ -41,22 +41,31 @@ export async function loggedPage() {
         },
       }
     );
-  } catch (e) {
-    console.log(e);
-  }
 
-  document.querySelector("#app").innerHTML = `
-      <div>
-        <h1>OAuth with GitHub</h1>
-        <p>Hi ${user?.data?.name || user?.data?.login}!</p>
+    document.querySelector("#app").innerHTML = `
         <div>
+          <h1>OAuth with GitHub</h1>
+          <p>Hi ${user?.data?.name || user?.data?.login}!</p>
           <div>
             <div>
-              <h2>Repositories:</h2>
-              ${repos?.data?.items?.map((e) => `<p>${e.name}</p>`).join(" ")}
+              <div>
+                <h2>Repositories:</h2>
+                ${repos?.data?.items?.map((e) => `<p>${e.name}</p>`).join(" ")}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
+  } catch (e) {
+    document.querySelector("#app").innerHTML = `
+        <div>
+          <h1>OAuth with GitHub</h1>
+          <div class="read-the-docs">
+            <p>Ops... Something went wrong while retrieveing the data...</p>
+          </div>
+        </div>
+      `;
+    console.log(e);
+  }
+
 }
