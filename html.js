@@ -53,7 +53,7 @@ export async function loggedPage() {
           <div>
             <div>
               <h2>Repositories:</h2>
-              ${repos.data.map((e) => `<p>${e.name}</p>`).join(" ")}
+              ${repos.data.items.map((e) => `<p>${e.name}</p>`).join(" ")}
             </div>
           </div>
         </div>
