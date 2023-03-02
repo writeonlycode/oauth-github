@@ -34,7 +34,7 @@ export async function loggedPage() {
   console.log(user);
 
   const repos = await axios.get(
-    `https://api.github.com/search/repositories?q=user:${user.data.user}`,
+    `https://api.github.com/search/repositories?q=user:${user.data.login}`,
     {
       headers: {
         Accept: "application/vnd.github+json",
@@ -46,7 +46,7 @@ export async function loggedPage() {
   document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
-        <p>Hi ${user.data.user}!</p>
+        <p>Hi ${user.data.name || user.data.login}!</p>
         <div>
           <div>
             <div>
