@@ -30,6 +30,8 @@ const start = async () => {
       }
     );
 
+    console.log(response);
+
     const githubAccessToken = response.data.access_token;
 
     if (!githubAccessToken) {

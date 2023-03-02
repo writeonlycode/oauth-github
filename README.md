@@ -87,6 +87,72 @@ provided to the client.
 
 ## Access Tokens and Refresh Tokens
 
+- **Access Tokens:** are used to access protected resources in the resource sever.
+  The client presents an access token to the resource server, and the resource
+  server returns the requested resources to the client.
+
+- **Refresh Tokens:** are used to get new access tokens. The client presents the
+  refresh token to the authentication server, and the authentication server
+  returns a new access token to the client.
+
+Access tokens are generally short lived, but the client can always get a new
+one with the refresh token. The usual flow goes something like this:
+
+```mermaid
+sequenceDiagram
+Client ->> Authorization Server: Authorization Grant
+Authorization Server ->> Client: Access Token &<br/>Refresh Token
+Client ->> Resource Server: Access Token
+Resource Server ->> Client: Protected Resource
+Client ->> Resource Server: Access Token
+Resource Server ->> Client: Invalid Token
+Client ->> Authorization Server: Refresh Token
+Authorization Server ->> Client: Access Token
+```
+
+## Client Registration
+
+Before a client can interact with an authentication server, the client must be
+registered with the authentication server. The registration must include: the
+type of the client, the redirection URIs, and optionally some additional
+information, such as the application name, logo, etc.
+
+The **Client Type** can be either _confidential_ or _public_. A confidential
+client would be a web application with a back-end, that handles the interaction
+with the authentication and the resource server in the back-end. In this
+scenario, the resource owner doesn't have access to the tokens. A public client
+would be a single page application that runs completely in the browser, and
+that handles the interaction with the authentication and the resource server
+completely in the front-end. In this scenario, the resource owner does have
+access to the tokens.
+
+The authorization server must issue a **Client Identifier**: a unique string
+that identifies the client uniquely within the authentication server. The
+client identifier is not secret.
+
+## Client Password
+
+When requesting a token, clients can use a Basic Authentication with a
+password, or use the parameters `client_id` and `client_secret` in the body of
+the request.
+
+## Endpoints
+
+There are typically 3 endpoints involved in the process: an authorization
+endpoint, a token endpoint, and a redirection endpoint.
+
+- **Authorization Endpoint:** is an endpoint of the Authentication Server, and
+  it's where the resource owner gives permission for the client to access it's
+  resources. If the permission is given, it's where the Authorization Grant is
+  generated.
+
+- **Token Endpoint:** is also an endpoint of the Authentication Server, and
+  it's where, after getting the permission from the client, the client requests
+  the tokens.
+
+- **Redirection Endpoint:** is an endpoint of the Client, and it's where the
+  Authorization Server will send the authorization codes and tokens.
+
 
 
 # OAuth GitHub
