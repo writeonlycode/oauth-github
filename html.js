@@ -43,6 +43,8 @@ export async function loggedPage() {
     }
   );
 
+  console.log(repos);
+
   document.querySelector("#app").innerHTML = `
       <div>
         <h1>OAuth with GitHub</h1>
